@@ -5,6 +5,7 @@ import cache from './config/cache';
 import Header from './components/Header/Header';
 import Clients from './components/Clients/Clients';
 import AddClientModal from './components/AddClientModal/AddClientModal';
+import Projects from './components/Projects/Projects';
 
 const client = new ApolloClient({
   uri: 'http://localhost:5000/graphql',
@@ -17,6 +18,7 @@ const App = () => {
       <Header />
       <div className='container'>
         <AddClientModal />
+        <Projects />
         <Clients />
       </div>
     </ApolloProvider>
