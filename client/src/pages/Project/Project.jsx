@@ -5,6 +5,7 @@ import { GET_PROJECT } from '../../gql/queries/project';
 // Components
 import Loading from '../../components/Loading/Loading';
 import ClientInfo from '../../components/ClientInfo/ClientInfo';
+import DeleteProjectButton from '../../components/DeleteProjectButton/DeleteProjectButton';
 
 const Project = () => {
   const { id } = useParams();
@@ -29,6 +30,7 @@ const Project = () => {
           <p className='lead'>{data.project.status}</p>
 
           <ClientInfo client={data.project.client} />
+          <DeleteProjectButton projectId={data.project.id} />
         </div>
       )}
     </>
