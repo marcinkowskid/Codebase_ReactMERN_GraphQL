@@ -2,6 +2,7 @@
 import { useMutation } from '@apollo/client';
 import { DELETE_CLIENT } from '../../gql/mutations/client';
 import { GET_CLIENTS } from '../../gql/queries/client';
+import { GET_PROJECTS } from '../../gql/queries/project';
 
 // Icons
 import { FaTrash } from 'react-icons/fa';
@@ -12,17 +13,17 @@ const ClientRow = ({ client }) => {
   const [deleteClient] = useMutation(DELETE_CLIENT, {
     variables: { id },
     // One method to refetch the data after the mutation
-    // refetchQueries: [{ query: GET_CLIENTS }],
+    refetchQueries: [{ query: GET_CLIENTS }, { query: GET_PROJECTS }],
     // Another method to refetch the data after the mutation
-    update(cache, { data: { deleteClient } }) {
-      const { clients } = cache.readQuery({ query: GET_CLIENTS });
-      cache.writeQuery({
-        query: GET_CLIENTS,
-        data: {
-          clients: clients.filter((client) => client.id !== deleteClient.id),
-        },
-      });
-    },
+    // update(cache, { data: { deleteClient } }) {
+    //   const { clients } = cache.readQuery({ query: GET_CLIENTS });
+    //   cache.writeQuery({
+    //     query: GET_CLIENTS,
+    //     data: {
+    //       clients: clients.filter((client) => client.id !== deleteClient.id),
+    //     },
+    //   });
+    // },
   });
 
   return (
